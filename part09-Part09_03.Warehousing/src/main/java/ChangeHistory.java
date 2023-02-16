@@ -3,59 +3,67 @@ import java.util.ArrayList;
 
 public class ChangeHistory {
 
-    private ArrayList<Double> history;
+    private ArrayList<Double> changeHistory;
 
     public ChangeHistory() {
-        this.history = new ArrayList<Double>();
+        this.changeHistory = new ArrayList<>();
     }
 
     public void add(double status) {
-        this.history.add(status);
+        this.changeHistory.add(status);
     }
 
     public void clear() {
-        this.history.clear();
-    }
-
-    public double maxValue() {
-        if (this.history.isEmpty()) {
-            return 0.0;
-        }
-        double max = this.history.get(0);
-        for (double value : this.history) {
-            if (value > max) {
-                max = value;
-            }
-        }
-        return max;
-    }
-
-    public double minValue() {
-        if (this.history.isEmpty()) {
-            return 0.0;
-        }
-        double min = this.history.get(0);
-        for (double value : this.history) {
-            if (value < min) {
-                min = value;
-            }
-        }
-        return min;
-    }
-
-    public double average() {
-        if (this.history.isEmpty()) {
-            return 0.0;
-        }
-        double sum = 0;
-        for (double value : this.history) {
-            sum += value;
-        }
-        return sum / this.history.size();
+        this.changeHistory.clear();
     }
 
     public String toString() {
-        return this.history.toString();
+        return changeHistory.toString();
     }
 
+    public double maxValue() {
+        if (this.changeHistory.size() == 0) {
+            return 0;
+        }
+
+        double maxChange = 0;
+
+        for (Double item : changeHistory) {
+            if (item > maxChange) {
+                maxChange = item;
+            }
+        }
+
+        return maxChange;
+    }
+
+    public double minValue() {
+        if (this.changeHistory.size() == 0) {
+            return 0;
+        }
+
+        double minChange = 10000000;
+
+        for (Double item : changeHistory) {
+            if (item < minChange) {
+                minChange = item;
+            }
+        }
+
+        return minChange;
+    }
+
+    public double average() {
+        if (this.changeHistory.size() == 0) {
+            return 0;
+        }
+
+        double total = 0;
+
+        for (Double item : changeHistory) {
+            total += item;
+        }
+
+        return (double) total / this.changeHistory.size();
+    }
 }
